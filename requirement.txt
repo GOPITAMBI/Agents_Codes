@@ -1,9 +1,0 @@
-streamlit
-google-generativeai
-langchain
-langgraph
-crewai
-tavily-python
-faiss-cpu
-PyPDF2
-pandas
