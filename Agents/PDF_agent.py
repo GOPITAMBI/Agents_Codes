@@ -25,7 +25,12 @@ class PDFAgent:
         self.api_key = os.getenv("GOOGLE_API_KEY")
         genai.configure(api_key=self.api_key)
         self.model_name = "gemini-2.0-flash"
-        self.uploaded_file = uploaded_file #
+        self.uploaded_file = uploaded_file
+
+ # Save file to temporary path
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+            tmp.write(self.uploaded_file.read())
+            self.uploaded_file = tmp.name
 
         # Load and process
         self.docs = self._load_pdf()
