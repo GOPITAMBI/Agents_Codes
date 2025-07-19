@@ -1,10 +1,16 @@
-google-generativeai
-langchain_community
-pypdf
-chromadb
-unstructured
-langchain-google-genai
-json
-streamlit
-jq
-FireCrawl
+# Core dependencies
+langchain>=0.1.14
+langchain-community>=0.0.30
+langchain-google-genai>=0.0.8
+google-generativeai>=0.4.1
+chromadb>=0.4.22
+python-dotenv>=1.0.1
+streamlit>=1.35.0
+pypdf>=3.16.4           # PDF support if needed
+pandas>=2.2.2           # CSV support
+
+# Optional: Unstructured for PDF parsing fallback
+unstructured>=0.10.14
+
+# Optional: For FireCrawl web search
+requests>=2.31.0
