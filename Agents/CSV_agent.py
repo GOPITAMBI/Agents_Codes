@@ -1,5 +1,5 @@
 import os
-import sys
+import tempfile
 from dotenv import load_dotenv
 import google.generativeai as genai
 from langchain_community.document_loaders import CSVLoader
@@ -18,12 +18,17 @@ from langchain.chains import RetrievalQA
 
 #3.CSVLoader(CSV_BASED_RAG)
 class CSVAgent:
-    def __init__(self, csv_path: str):
+    def __init__(self, uploaded_file):
         load_dotenv()
         self.api_key = os.getenv("GOOGLE_API_KEY")
         genai.configure(api_key=self.api_key)
         self.model_name = "gemini-2.0-flash"
-        self.csv_path = csv_path
+        self.uploaded_file = uploaded_file
+
+        #Save file to temporary path
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+            tmp.write(self.uploaded_file.read())
+            self.temp_path = tmp.name
 
         # Load and process
         self.docs = self._load_csv()
@@ -71,12 +76,12 @@ class CSVAgent:
         response = self.qa_chain.invoke({"query": question})
         return response['result']
 
-# ===== Usage Example =====
-if __name__ == "__main__":
-    csv_path = r"D:\desktop\Agriculture\GxE_Analysis\Gen_data.csv"
-    rag_agent = CSVAgent(csv_path)
-    question = "what is the g1 value at GRW?"
-    answer = rag_agent.ask(question)
+# # ===== Usage Example =====
+# if __name__ == "__main__":
+#     csv_path = r"D:\desktop\Agriculture\GxE_Analysis\Gen_data.csv"
+#     rag_agent = CSVAgent(csv_path)
+#     question = "what is the g1 value at GRW?"
+#     answer = rag_agent.ask(question)
 
-    sys.stdout.reconfigure(encoding='utf-8')
-    print(answer)
+#     sys.stdout.reconfigure(encoding='utf-8')
+#     print(answer)

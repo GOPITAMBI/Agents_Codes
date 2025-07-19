@@ -20,11 +20,11 @@ if uploaded_file and question:
     
 
     if file_type == "pdf":
-        answer = PDFAgent(uploaded_file, question)
+        answer = PDFAgent(uploaded_file)
     elif file_type == "csv":
-        answer = CSVAgent(uploaded_file, question)
+        answer = CSVAgent(uploaded_file)
     elif file_type == "txt":
-        answer = TextAgent(uploaded_file, question)
+        answer = TextAgent(uploaded_file)
     else:
         answer = "Unsupported file type."
 
