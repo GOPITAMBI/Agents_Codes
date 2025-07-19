@@ -5,7 +5,7 @@ from Agents.CSV_agent import CSVAgent
 from Agents.PDF_agent import PDFAgent
 from Agents.Text_agent import TextAgent
 from src.custom_tool import FireCrawlWebSearchTool
-from utils.parser import extract_text_from_uploaded_file
+#from utils.parser import extract_text_from_uploaded_file
 
 
 # Load environment variables

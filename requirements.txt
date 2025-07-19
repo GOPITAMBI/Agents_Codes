@@ -14,3 +14,4 @@ unstructured>=0.10.14
 
 # Optional: For FireCrawl web search
 requests>=2.31.0
+fitz>=1.0.0  # PyMuPDF for PDF parsing
